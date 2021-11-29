@@ -3,6 +3,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import Button from "@kiwicom/orbit-components/lib/Button";
 import InputField from "@kiwicom/orbit-components/lib/InputField";
 import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card";
+import Text from "@kiwicom/orbit-components/lib/Text";
+import Layout, { LayoutColumn } from "@kiwicom/orbit-components/lib/Layout";
 
 import "./App.css";
 import { SIG_IN } from "./gql/analitycs";
@@ -34,40 +36,64 @@ function App() {
 
   return (
     <div className="App">
-      <div className="login">
-        <Card>
-          <CardSection>
-            <InputField
-              // error="Please enter your email"
-              placeholder="your@email.com"
-              label="Email"
-              type="email"
-              inputMode="email"
-              spaceAfter="largest"
-              value={email}
-              onChange={({ currentTarget }) => setEmail(currentTarget.value)}
-            />
+      <Layout type="Search">
+        <LayoutColumn>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              height: "95vh",
+            }}
+          >
+            <h1>Baseball statistics</h1>
+          </div>
+        </LayoutColumn>
+        <LayoutColumn>
+          <div className="login">
+            <Text>
+              <h1>Baseball Stats</h1>
+            </Text>
+            <Card>
+              <CardSection>
+                <InputField
+                  // error="Please enter your email"
+                  placeholder="your@email.com"
+                  label="Email"
+                  type="email"
+                  inputMode="email"
+                  spaceAfter="largest"
+                  value={email}
+                  onChange={({ currentTarget }) =>
+                    setEmail(currentTarget.value)
+                  }
+                />
 
-            <InputField
-              // error="Please enter your email"
-              // placeholder=""
-              label="Password"
-              type="password"
-              inputMode="email"
-              value={password}
-              onChange={({ currentTarget }) => setPassword(currentTarget.value)}
-            />
-          </CardSection>
-          <CardSection noSeparator={true}>
-            <Button
-              fullWidth={true}
-              onClick={() => handleLogin(email, password)}
-            >
-              Log In
-            </Button>
-          </CardSection>
-        </Card>
-      </div>
+                <InputField
+                  // error="Please enter your email"
+                  // placeholder=""
+                  label="Password"
+                  type="password"
+                  inputMode="email"
+                  value={password}
+                  onChange={({ currentTarget }) =>
+                    setPassword(currentTarget.value)
+                  }
+                />
+              </CardSection>
+              <CardSection noSeparator={true}>
+                <Button
+                  fullWidth={true}
+                  onClick={() => handleLogin(email, password)}
+                >
+                  Log In
+                </Button>
+              </CardSection>
+            </Card>
+            <Text>forgot password?</Text>
+          </div>
+        </LayoutColumn>
+      </Layout>
     </div>
   );
 }

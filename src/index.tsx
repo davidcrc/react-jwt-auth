@@ -5,12 +5,38 @@ import { client } from "./api/api";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "styled-components";
+import getTokens from "@kiwicom/orbit-components/lib/getTokens";
+
+const customTokens = getTokens({
+  palette: {
+    product: {
+      light: "#fdf0ff",
+      lightHover: "#fbdfff",
+      lightActive: "#f9ceff",
+      normal: "#009FC7",
+      normalHover: "#004FC9",
+      normalActive: "#004FC9",
+      dark: "#110013",
+    },
+  },
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ThemeProvider
+      theme={{
+        yourCustomTheme: { black: "#000" },
+        orbit: customTokens,
+        rtl: false,
+        transitions: false,
+        lockScrolling: false,
+      }}
+    >
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ThemeProvider>
   </ApolloProvider>,
   document.getElementById("root")
 );
